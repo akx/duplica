@@ -51,6 +51,9 @@ namespace Duplica.Forms
 			this.filesListView = new System.Windows.Forms.ListView();
 			this.listMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.exploreHereItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.regexpSelectBox = new System.Windows.Forms.ToolStripTextBox();
+			this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
 			NameHdr = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			PathHdr = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			SizeHdr = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -88,7 +91,10 @@ namespace Duplica.Forms
 			this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
 			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.refreshButton,
+            this.toolStripSeparator2,
             this.smartSelectBtn,
+            this.toolStripLabel1,
+            this.regexpSelectBox,
             this.toolStripSeparator1,
             this.deleteFilesBtn});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
@@ -179,6 +185,23 @@ namespace Duplica.Forms
 			this.exploreHereItem.Text = "Explore Here...";
 			this.exploreHereItem.Click += new System.EventHandler(this.ExploreHereItemClick);
 			// 
+			// regexpSelectBox
+			// 
+			this.regexpSelectBox.Name = "regexpSelectBox";
+			this.regexpSelectBox.Size = new System.Drawing.Size(100, 25);
+			this.regexpSelectBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.regexpSelectBox_KeyUp);
+			// 
+			// toolStripLabel1
+			// 
+			this.toolStripLabel1.Name = "toolStripLabel1";
+			this.toolStripLabel1.Size = new System.Drawing.Size(98, 22);
+			this.toolStripLabel1.Text = "Select by Regexp:";
+			// 
+			// toolStripSeparator2
+			// 
+			this.toolStripSeparator2.Name = "toolStripSeparator2";
+			this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+			// 
 			// ResultForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -208,5 +231,8 @@ namespace Duplica.Forms
 		private System.Windows.Forms.ToolStrip toolStrip1;
 		private System.Windows.Forms.StatusStrip statusStrip1;
 		private System.Windows.Forms.ListView filesListView;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+		private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+		private System.Windows.Forms.ToolStripTextBox regexpSelectBox;
 	}
 }

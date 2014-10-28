@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace Duplica.Forms
@@ -151,6 +152,40 @@ namespace Duplica.Forms
 			}
 		}
 
+		private void regexpSelectBox_KeyUp(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Return)
+			{
+				var pattern = ((ToolStripTextBox)sender).Text;
+				DoRegexpSelect(pattern);
+			}
+		}
+
+		private void DoRegexpSelect(string pattern)
+		{
+			Regex regexp;
+			try
+			{
+				regexp = new Regex(pattern, RegexOptions.IgnoreCase);
+			}
+			catch (Exception exc)
+			{
+				MessageBox.Show("Unable to compile regular expression: {0}", exc.Message);
+				return;
+			}
+			var matches = filesListView.Items.Cast<ListViewItem>().Where((lvi) => regexp.IsMatch(((FileInfo) lvi.Tag).Name)).ToList();
+			if (MessageBox.Show(string.Format("Select {0} items?", matches.Count), "Duplica", MessageBoxButtons.YesNo) == DialogResult.Yes)
+			{
+				using (Freeze())
+				{
+					foreach (var listViewItem in matches)
+					{
+						listViewItem.Checked = true;
+					}
+
+				}
+			}
+		}
 
 		private class _Freeze : IDisposable {
 			private readonly ResultForm _resultForm;
