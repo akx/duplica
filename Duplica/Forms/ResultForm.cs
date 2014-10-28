@@ -33,6 +33,7 @@ namespace Duplica.Forms
 				totalWasted += wastedHere;
 				var title = String.Format("{0} ({1:N2} KiB wasted)", files.Key, wastedHere/1024.0);
 				var lvg = new ListViewGroup(files.Key.ToString(), title);
+				var items = new List<ListViewItem>();
 				foreach (var fi in files.FileInfos)
 				{
 					var lvi = new ListViewItem(new[]
@@ -40,10 +41,14 @@ namespace Duplica.Forms
 						fi.Name,
 						fi.DirectoryName,
 						String.Format("{0:N2} KiB", fi.Length/1024.0)
-					}) {Tag = fi};
+					}) {Tag = fi, ToolTipText = fi.Name};
+					items.Add(lvi);
+					nFiles ++;
+				}
+				foreach (var lvi in items.OrderBy((lvi) => lvi.ToolTipText.ToLowerInvariant()))
+				{
 					lvg.Items.Add(lvi);
 					filesListView.Items.Add(lvi);
-					nFiles ++;
 				}
 				filesListView.Groups.Add(lvg);
 			}
