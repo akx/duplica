@@ -108,15 +108,14 @@ namespace Duplica.Forms
 
 		private void SmartSelectBtnClick(object sender, EventArgs e)
 		{
-			_frozen = true;
-			filesListView.BeginUpdate();
-			foreach (ListViewGroup lvg in filesListView.Groups)
+			using (Freeze())
 			{
-				int i = 0;
-				foreach (ListViewItem lvi in lvg.Items) lvi.Checked = ((i++) != 0);
+				foreach (ListViewGroup lvg in filesListView.Groups)
+				{
+					int i = 0;
+					foreach (ListViewItem lvi in lvg.Items) lvi.Checked = ((i++) != 0);
+				}
 			}
-			filesListView.EndUpdate();
-			_frozen = false;
 			FilesListViewItemChecked(sender, null);
 		}
 
@@ -150,6 +149,28 @@ namespace Duplica.Forms
 			{
 				Process.Start((((FileInfo)item.Tag).FullName));
 			}
+		}
+
+
+		private class _Freeze : IDisposable {
+			private readonly ResultForm _resultForm;
+
+			internal _Freeze(ResultForm resultForm)
+			{
+				_resultForm = resultForm;
+				_resultForm._frozen = true;
+				_resultForm.filesListView.BeginUpdate();
+			}
+			public void Dispose()
+			{
+				_resultForm.filesListView.EndUpdate();
+				_resultForm._frozen = false;
+			}
+		}
+
+		private _Freeze Freeze()
+		{
+			return new _Freeze(this);
 		}
 	}
 }
