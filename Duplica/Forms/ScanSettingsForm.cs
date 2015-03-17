@@ -6,9 +6,9 @@ using System.Windows.Forms;
 
 namespace Duplica.Forms
 {
-	public partial class MainForm : Form
+	public partial class ScanSettingsForm : Form
 	{
-		public MainForm(IEnumerable<string> args)
+		public ScanSettingsForm(IEnumerable<string> args)
 		{
 			InitializeComponent();
 			AlgoCB.SelectedIndex = 0;
@@ -64,7 +64,8 @@ namespace Duplica.Forms
 				dirFilterBox.Text.Split('\n'),
 				recurseCB.Checked,
 				extensionCB.Checked,
-				(string)AlgoCB.SelectedItem
+				(string)AlgoCB.SelectedItem,
+				(int)hashLimit.Value
 			));
 			var scanWindow = new ScanWindow(context);
 			scanWindow.Show();

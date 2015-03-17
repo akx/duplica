@@ -1,6 +1,6 @@
 ﻿namespace Duplica.Forms
 {
-	partial class MainForm
+	partial class ScanSettingsForm
 	{
 		/// <summary>
 		/// Designer variable used to keep track of non-visual components.
@@ -31,7 +31,8 @@
 			this.components = new System.ComponentModel.Container();
 			System.Windows.Forms.ContextMenuStrip dirCtxMenu;
 			System.Windows.Forms.Label label1;
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+			System.Windows.Forms.Label label4;
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ScanSettingsForm));
 			this.addFolderItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.removeFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -43,6 +44,8 @@
 			this.dirFilterBox = new System.Windows.Forms.TextBox();
 			this.fileFilterBox = new System.Windows.Forms.TextBox();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.label5 = new System.Windows.Forms.Label();
+			this.hashLimit = new System.Windows.Forms.NumericUpDown();
 			this.AlgoCB = new System.Windows.Forms.ComboBox();
 			this.extensionCB = new System.Windows.Forms.CheckBox();
 			this.recurseCB = new System.Windows.Forms.CheckBox();
@@ -55,6 +58,7 @@
 			this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
 			dirCtxMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
 			label1 = new System.Windows.Forms.Label();
+			label4 = new System.Windows.Forms.Label();
 			dirCtxMenu.SuspendLayout();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.SuspendLayout();
@@ -62,6 +66,7 @@
 			this.tableLayoutPanel2.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.hashLimit)).BeginInit();
 			this.toolStrip.SuspendLayout();
 			this.groupBox3.SuspendLayout();
 			this.SuspendLayout();
@@ -97,6 +102,15 @@
 			label1.TabIndex = 11;
 			label1.Text = "Algorithm";
 			label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// label4
+			// 
+			label4.Location = new System.Drawing.Point(15, 57);
+			label4.Name = "label4";
+			label4.Size = new System.Drawing.Size(105, 20);
+			label4.TabIndex = 14;
+			label4.Text = "Limit hashing to";
+			label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// splitContainer1
 			// 
@@ -197,6 +211,9 @@
 			// 
 			// groupBox2
 			// 
+			this.groupBox2.Controls.Add(this.label5);
+			this.groupBox2.Controls.Add(this.hashLimit);
+			this.groupBox2.Controls.Add(label4);
 			this.groupBox2.Controls.Add(this.AlgoCB);
 			this.groupBox2.Controls.Add(this.extensionCB);
 			this.groupBox2.Controls.Add(label1);
@@ -209,6 +226,32 @@
 			this.groupBox2.TabIndex = 7;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Settings";
+			// 
+			// label5
+			// 
+			this.label5.AutoSize = true;
+			this.label5.Location = new System.Drawing.Point(240, 61);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(51, 13);
+			this.label5.TabIndex = 16;
+			this.label5.Text = "first bytes";
+			// 
+			// hashLimit
+			// 
+			this.hashLimit.Increment = new decimal(new int[] {
+            4096,
+            0,
+            0,
+            0});
+			this.hashLimit.Location = new System.Drawing.Point(126, 57);
+			this.hashLimit.Maximum = new decimal(new int[] {
+            250000000,
+            0,
+            0,
+            0});
+			this.hashLimit.Name = "hashLimit";
+			this.hashLimit.Size = new System.Drawing.Size(109, 20);
+			this.hashLimit.TabIndex = 15;
 			// 
 			// AlgoCB
 			// 
@@ -228,18 +271,18 @@
 			// 
 			this.extensionCB.Checked = true;
 			this.extensionCB.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.extensionCB.Location = new System.Drawing.Point(15, 80);
+			this.extensionCB.Location = new System.Drawing.Point(18, 121);
 			this.extensionCB.Name = "extensionCB";
-			this.extensionCB.Size = new System.Drawing.Size(197, 19);
+			this.extensionCB.Size = new System.Drawing.Size(246, 19);
 			this.extensionCB.TabIndex = 12;
-			this.extensionCB.Text = "Size groups honor extension";
+			this.extensionCB.Text = "Honor file extension when grouping results";
 			this.extensionCB.UseVisualStyleBackColor = true;
 			// 
 			// recurseCB
 			// 
 			this.recurseCB.Checked = true;
 			this.recurseCB.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.recurseCB.Location = new System.Drawing.Point(15, 54);
+			this.recurseCB.Location = new System.Drawing.Point(18, 95);
 			this.recurseCB.Name = "recurseCB";
 			this.recurseCB.Size = new System.Drawing.Size(197, 20);
 			this.recurseCB.TabIndex = 10;
@@ -313,7 +356,7 @@
 			this.dirsListView.DragDrop += new System.Windows.Forms.DragEventHandler(this.DirsListViewDragDrop);
 			this.dirsListView.DragEnter += new System.Windows.Forms.DragEventHandler(this.DirsListViewDragEnter);
 			// 
-			// MainForm
+			// ScanSettingsForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -322,7 +365,7 @@
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.MaximizeBox = false;
 			this.MinimumSize = new System.Drawing.Size(645, 600);
-			this.Name = "MainForm";
+			this.Name = "ScanSettingsForm";
 			this.Text = "Duplica";
 			this.DragDrop += new System.Windows.Forms.DragEventHandler(this.DirsListViewDragDrop);
 			this.DragEnter += new System.Windows.Forms.DragEventHandler(this.DirsListViewDragEnter);
@@ -335,6 +378,8 @@
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			this.groupBox2.ResumeLayout(false);
+			this.groupBox2.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.hashLimit)).EndInit();
 			this.toolStrip.ResumeLayout(false);
 			this.toolStrip.PerformLayout();
 			this.groupBox3.ResumeLayout(false);
@@ -362,5 +407,7 @@
 		private System.Windows.Forms.ListView dirsListView;
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
 		private System.Windows.Forms.SplitContainer splitContainer1;
+		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.NumericUpDown hashLimit;
 	}
 }

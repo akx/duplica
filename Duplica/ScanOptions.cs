@@ -12,8 +12,9 @@ namespace Duplica
 		private readonly List<string> _fileFilters;
 		private readonly List<String> _paths;
 		private readonly bool _recurse;
+		private readonly int _hashByteLimit;
 
-		public ScanOptions(IEnumerable<string> paths, IEnumerable<string> fileFilters, IEnumerable<string> dirFilters, bool recurse, bool extensionGroups, string algorithm)
+		public ScanOptions(IEnumerable<string> paths, IEnumerable<string> fileFilters, IEnumerable<string> dirFilters, bool recurse, bool extensionGroups, string algorithm, int hashByteLimit)
 		{
 			_paths = new List<string>(paths);
 			_fileFilters = new List<string>(fileFilters);
@@ -21,6 +22,7 @@ namespace Duplica
 			_recurse = recurse;
 			_extensionGroups = extensionGroups;
 			_algorithm = algorithm;
+			_hashByteLimit = hashByteLimit;
 			try
 			{
 				HashAlgorithm ha = HashAlgorithm.Create(algorithm);
@@ -60,6 +62,11 @@ namespace Duplica
 		public List<string> DirFilters
 		{
 			get { return _dirFilters; }
+		}
+
+		public int HashByteLimit
+		{
+			get { return _hashByteLimit; }
 		}
 	}
 }

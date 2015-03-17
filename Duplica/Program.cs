@@ -11,7 +11,7 @@ namespace Duplica
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new MainForm(args));
+			Application.Run(new ScanSettingsForm(args));
 		}
 		
 	}

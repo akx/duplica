@@ -68,7 +68,13 @@ namespace Duplica.Workers
 				hasher.Initialize();
 				byte[] hashBytes;
 				_lastFilename = fi.Name;
-				if (fi.Length < SmallFileThreshold) // Read small files quickly
+				if (Context.Options.HashByteLimit > 0) // Hash only first N bytes
+				{
+					var buf = new byte[Math.Min(fi.Length, Context.Options.HashByteLimit)];
+					int n = fs.Read(buf, 0, buf.Length);
+					hashBytes = hasher.ComputeHash(buf, 0, n);
+				}
+				else if (fi.Length < SmallFileThreshold) // Read small files quickly
 				{
 					var buf = new byte[fi.Length];
 					int n = fs.Read(buf, 0, buf.Length);
